@@ -8,7 +8,7 @@ RUN pip3 install networkx
 RUN pip3 install pydot
 RUN pip3 install pydotplus
 
-COPY build_install_alfgo.sh /root/
-RUN /bin/bash /root/build_install_alfgo.sh
-RUN rm /root/build_install_alfgo.sh
+COPY build_install_aflgo.sh /root/
+RUN /bin/bash /root/build_install_aflgo.sh
+RUN rm /root/build_install_aflgo.sh
 
