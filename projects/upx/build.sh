@@ -23,7 +23,7 @@ export UPX_LZMADIR="$PWD/src/lzma-sdk"
 CC=afl-clang
 CXX=afl-clang++
 make all  
-
+mv /src/upx.out $OUT/upx
 
 
 pwd
