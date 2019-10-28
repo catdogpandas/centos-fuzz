@@ -1,4 +1,4 @@
-FROM hust-fuzz-base/base-image
+FROM hust-fuzz-base/base-builder
 MAINTAINER mike.aizatsky@gmail.com
 RUN apt-get install -y \
     binutils \
