@@ -17,7 +17,9 @@
 
 # Fuzzer runner. Appends .options arguments and seed corpus to users args.
 # Usage: $0 <fuzzer_name> <fuzzer_args>
-
+#afl-fuzz -i $IN -o $OUT ./src/upx.out
+afl-fuzz $AFL_FUZZER_ARGS -i $CORPUS_DIR -o $FUZZER_OUT $(get_dictionary) $* $OUT/$FUZZER
+:<<BLOCK
 export PATH=$OUT:$PATH
 cd $OUT
 
@@ -31,6 +33,7 @@ if [[ "$RUN_FUZZER_MODE" = interactive ]]; then
 else
   FUZZER_OUT="/tmp/${FUZZER}_${FUZZING_ENGINE}_${SANITIZER}_out"
 fi
+BLOCK
 
 function get_dictionary() {
   local options_file="$FUZZER.options"
@@ -53,7 +56,7 @@ function get_dictionary() {
      printf "Unexpected FUZZING_ENGINE: $FUZZING_ENGINE, ignoring\n" >&2
   fi
 }
-
+:<<BLOCK
 rm -rf $CORPUS_DIR && mkdir $CORPUS_DIR
 rm -rf $FUZZER_OUT && mkdir $FUZZER_OUT
 
@@ -105,3 +108,4 @@ fi
 
 echo $CMD_LINE
 bash -c "$CMD_LINE"
+BLOCK
