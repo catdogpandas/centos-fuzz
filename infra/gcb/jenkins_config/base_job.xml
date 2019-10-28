@@ -29,7 +29,7 @@ cp -r /home/liqiang/oss-fuzz .
 cd oss-fuzz
 ls
 
-python infra/center.py build_image ${JOB_NAME#*/}
+#python infra/center.py build_image ${JOB_NAME#*/}
 python infra/center.py build_fuzzers ${JOB_NAME#*/}
 #build_id=$(python build_project.py $WORKSPACE/oss-fuzz/$JOB_NAME)
 #python wait_for_build.py $build_id
