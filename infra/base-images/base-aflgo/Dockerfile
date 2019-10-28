@@ -1,4 +1,4 @@
-FROM hust-fuzz-base/base-llvm6.0
+FROM hust-fuzz-base/base-clang
 
 
 WORKDIR $SRC
