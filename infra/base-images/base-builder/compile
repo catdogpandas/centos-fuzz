@@ -57,8 +57,8 @@ fi
 
 #export CXXFLAGS="$CFLAGS $CXXFLAGS_EXTRA"
 
-echo "CC=$CC"
-echo "CXX=$CXX"
+#echo "CC=$CC"
+#echo "CXX=$CXX"
 #echo "CFLAGS=$CFLAGS"
 #echo "CXXFLAGS=$CXXFLAGS"
 
