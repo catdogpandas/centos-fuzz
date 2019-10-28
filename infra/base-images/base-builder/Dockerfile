@@ -1,4 +1,4 @@
-FROM hust-fuzz-base/base-llvm3.8
+FROM hust-fuzz-base/base-aflgo
 RUN PATH=$PATH:/usr/local/bin
 RUN apt-get install -y git \
     subversion \
@@ -58,13 +58,13 @@ ENV FUZZER_LDFLAGS ""
 
 WORKDIR $SRC
 
-ADD http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz $SRC/
-RUN mkdir afl && \
-    cd afl && \
-    tar -xzv --strip-components=1 -f $SRC/afl-latest.tgz && \
-    make && \
-    make install && \
-    rm -rf $SRC/afl-latest.tgz
+#ADD http://lcamtuf.coredump.cx/afl/releases/afl-latest.tgz $SRC/
+#RUN mkdir afl && \
+#    cd afl && \
+#    tar -xzv --strip-components=1 -f $SRC/afl-latest.tgz && \
+#    make && \
+#    make install && \
+#    rm -rf $SRC/afl-latest.tgz
 
 COPY compile compile_afl compile_macke macke_build compile_dataflow compile_libfuzzer compile_honggfuzz \
     srcmap write_labels.py /usr/local/bin/
