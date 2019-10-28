@@ -31,7 +31,19 @@ COPY bad_build_check \
     targets_list \
     test_all \
     /usr/local/bin/
-
+RUN chmod +x /usr/local/bin/bad_build_check \
+    /usr/local/bin/coverage \
+    /usr/local/bin/coverage_helper \
+    /usr/local/bin/download_corpus \
+    /usr/local/bin/llvm-cov \
+    /usr/local/bin/llvm-profdata \
+    /usr/local/bin/llvm-symbolizer \
+    /usr/local/bin/minijail0 \
+    /usr/local/bin/reproduce \
+    /usr/local/bin/run_fuzzer \
+    /usr/local/bin/run_minijail \
+    /usr/local/bin/targets_list \
+    /usr/local/bin/test_all \
 # Default environment options for various sanitizers.
 # Note that these match the settings used in ClusterFuzz and
 # shouldn't be changed unless a corresponding change is made on
