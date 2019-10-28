@@ -29,7 +29,7 @@ make all
 pwd
 ls
 #make
-afl-fuzz -i $IN -o $OUT ./src/upx.out
+#afl-fuzz -i $IN -o $OUT ./src/upx.out
 # build project
 # e.g.
 # ./autogen.sh

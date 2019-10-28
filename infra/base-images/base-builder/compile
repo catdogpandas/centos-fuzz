@@ -18,11 +18,11 @@ if [[ $ARCHITECTURE == "i386" ]]; then
     cp -R /usr/i386/lib/* /usr/lib
 fi
 #暂时取消在此处对工具进行编译，让工具在镜像中就编译好
-if [[ $FUZZING_ENGINE != "macke" ]]; then
+#if [[ $FUZZING_ENGINE != "macke" ]]; then
   # compile script might override environment, use . to call it.
   # 在这里对对应的模糊工具进行了编译，所以是在Dockerfile还是compile_(_)里面就需要考虑了，但是为方便资源的话可以在Dockerfile里面直接编译好
-  . compile_${FUZZING_ENGINE}
-fi
+#  . compile_${FUZZING_ENGINE}
+#fi
 
 # 当前可以忽略，下星期一定学模糊测试工具
 if [[ $SANITIZER_FLAGS = *sanitize=memory* ]]
@@ -79,8 +79,8 @@ if [ "${BUILD_UID-0}" -ne "0" ]; then
     # Some directories have broken symlinks (e.g. honggfuzz), ignore the errors.
     su -c "$COPY_SOURCES_CMD" builder 2>/dev/null || true
   fi
-elif [ $FUZZING_ENGINE != "macke" ]
-  . macke_build
+#elif [ $FUZZING_ENGINE != "macke" ]
+#  . macke_build
 else
   $BUILD_CMD
   if [ "$SANITIZER" = "coverage" ]; then
