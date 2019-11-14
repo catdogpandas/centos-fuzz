@@ -412,7 +412,7 @@ def build_fuzzers(args):
         print('Cleaning existing build artifacts.')
         docker_run([
             '-v','%s:/out' %project_out_dir,
-            '-t', 'hust-fuzz/%s' % project_name,
+            '-it', 'hust-fuzz/%s' % project_name,
             '/bin/bash', '-c', 'rm -rf /out/*'])
     else:
         print('Keeping existing build artifacts as-is (if any).')
