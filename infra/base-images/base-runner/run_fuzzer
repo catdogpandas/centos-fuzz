@@ -4,7 +4,7 @@
 # Fuzzer runner. Appends .options arguments and seed corpus to users args.
 # Usage: $0 <fuzzer_name> <fuzzer_args>
 #afl-fuzz -i $IN -o $OUT ./src/upx.out
-afl-fuzz $AFL_FUZZER_ARGS -i $IN -o $OUT $(get_dictionary) $* $OUT/$FUZZER
+afl-fuzz -i $IN -o $OUT $(get_dictionary) $* $OUT/$FUZZER
 :<<BLOCK
 export PATH=$OUT:$PATH
 cd $OUT
