@@ -7,7 +7,7 @@
 mkdir tmp
 CORPUS_DIR="tmp"
 echo a>$CORPUS_DIR
-afl-fuzz $AFL_FUZZER_ARGS -i $CORPUS_DIR -o $OUT $(get_dictionary) $* $OUT/$FUZZER
+afl-fuzz $AFL_FUZZER_ARGS -i $IN -o $OUT $(get_dictionary) $* $OUT/$FUZZER
 :<<BLOCK
 export PATH=$OUT:$PATH
 cd $OUT
