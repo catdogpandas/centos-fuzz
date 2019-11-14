@@ -306,7 +306,7 @@ def _build_image(image_name,no_cache=False,pull=False):
     build_args=[]
     if no_cache:
         build_args.append('--no-cache')
-    build_args+=['%s/%s'%(image_project,image_name),dockerfile_dir]
+    build_args+=['-t','%s/%s'%(image_project,image_name),dockerfile_dir]
 
     return docker_build(build_args,pull=pull)
 
