@@ -4,7 +4,24 @@
 # Fuzzer runner. Appends .options arguments and seed corpus to users args.
 # Usage: $0 <fuzzer_name> <fuzzer_args>
 #afl-fuzz -i $IN -o $OUT ./src/upx.out
+export PATH=$OUT:$PATH
 afl-fuzz -i $IN -o $OUT $(get_dictionary) $* $OUT/$FUZZER
+
+:<<BLOCK
+
+cd $OUT
+
+FUZZER=$1
+shift
+
+CORPUS_DIR="/tmp/${FUZZER}_corpus"
+
+if [[ "$RUN_FUZZER_MODE" = interactive ]]; then
+  FUZZER_OUT="$OUT/${FUZZER}_${FUZZING_ENGINE}_${SANITIZER}_out"
+else
+  FUZZER_OUT="/tmp/${FUZZER}_${FUZZING_ENGINE}_${SANITIZER}_out"
+fi
+
 function get_dictionary() {
   local options_file="$FUZZER.options"
   local dict_file="$FUZZER.dict"
@@ -26,24 +43,6 @@ function get_dictionary() {
      printf "Unexpected FUZZING_ENGINE: $FUZZING_ENGINE, ignoring\n" >&2
   fi
 }
-:<<BLOCK
-export PATH=$OUT:$PATH
-cd $OUT
-
-FUZZER=$1
-shift
-
-CORPUS_DIR="/tmp/${FUZZER}_corpus"
-
-if [[ "$RUN_FUZZER_MODE" = interactive ]]; then
-  FUZZER_OUT="$OUT/${FUZZER}_${FUZZING_ENGINE}_${SANITIZER}_out"
-else
-  FUZZER_OUT="/tmp/${FUZZER}_${FUZZING_ENGINE}_${SANITIZER}_out"
-fi
-BLOCK
-
-
-:<<BLOCK
 rm -rf $CORPUS_DIR && mkdir $CORPUS_DIR
 rm -rf $FUZZER_OUT && mkdir $FUZZER_OUT
 
