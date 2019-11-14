@@ -645,7 +645,7 @@ def run_fuzzer(args):
 
     run_args = _env_to_docker_args(env) + [
         '-v', '%s:/out' % _get_output_dir(args.project_name),
-        '-v', '%s:/in' % _get_project_dir(args.project_name),
+        '-v', '%s/in:/in' % _get_project_dir(args.project_name),
         '-t', 'hust-fuzz-base/base-runner',
         'run_fuzzer',
         args.fuzzer_name,
