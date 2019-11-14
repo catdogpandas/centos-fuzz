@@ -447,7 +447,7 @@ def build_fuzzers(args):
         command+=['-v','%s:%s' % (_get_absolute_path(args.source_path), workdir),]
     command+=['-v','%s:/in'%project_in_dir,]
     command += ['-v', '%s:/out' % project_out_dir,'-v', '%s:/work' % project_work_dir,
-                '-it', 'hust-fuzz/%s' % project_name]
+                '-i', 'hust-fuzz/%s' % project_name]
     print('Running:', _get_command_string(command))
     try:
         subprocess.check_call(command)
